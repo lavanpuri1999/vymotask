@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, Button } from 'react-native';
-
+import axios from "axios"
 class Home extends React.Component{
     constructor(){
         super()
@@ -17,12 +17,41 @@ class Home extends React.Component{
         })
     }
 
-    handlePress = ()=>{
+    handlePress = async()=>{
         if(this.state.org_name ==="" || this.state.repo_name ===""){
             alert("Text cant be empty")
             return
         }
-        console.log(this.state.org_name,this.state.repo_name)
+        const openLink = `https://api.github.com/repos/${this.state.org_name}/${this.state.repo_name}/issues?state=open`
+        const closedLink = `https://api.github.com/repos/${this.state.org_name}/${this.state.repo_name}/issues?state=closed`
+        var openData = []
+        var closedData = []
+
+        await axios.get(openLink)
+        .then(response => {
+            openData = response.data
+        })
+        .catch(error => {
+            alert("Error fetching open data")
+            console.log(error)
+            return
+        })
+
+        await axios.get(closedLink)
+        .then(response =>{
+            closedData = response.data
+        })
+        .catch(error => {
+            alert("Error fetching closed data")
+            console.log(error)
+            return
+        })
+        console.log(openData)
+        console.log(closedData)
+        this.props.navigation.navigate('Show', {
+            openData: openData,
+            closedData: closedData,
+        });
 
     }
 

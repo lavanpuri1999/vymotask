@@ -9,15 +9,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator()
 export default function App() {
   return (
-    <div  style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    // <div  style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
        <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Show" component={Show} />
+            <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
 
-    </div>
+    // </div>
   )
 }
 
