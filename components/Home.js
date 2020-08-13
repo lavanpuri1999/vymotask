@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, Button } from 'react-native';
+import { TextInput, Button,View } from 'react-native';
 import axios from "axios"
 class Home extends React.Component{
     constructor(){
@@ -57,15 +57,21 @@ class Home extends React.Component{
 
     render(){
         return(
-            <div  style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <TextInput onChange={this.handleChange} placeholder="ORG NAME" name="org_name" value={this.state.org_name} style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} /><br/>
+            <View  style={{ flex: 1 , flexDirection : 'column' , alignItems : 'center' , marginTop : 100}}>
+                 <View style={{width : '90%'}}>
+                    <TextInput onChange={this.handleChange} placeholder="ORG NAME" name="org_name" value={this.state.org_name} style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} /><br/>
+                    </View>
+                    <View style={{width : '90%'}}>
                 <TextInput onChange={this.handleChange} placeholder="REPO NAME" name="repo_name" value={this.state.repo} style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} /><br/>
+                </View>
+                <View style={{width : '90%'}}>
                 <Button 
                     onPress={this.handlePress}
                     title = "Submit"
                     color = "red"
                 />
-            </div>
+                </View>
+            </View>
         )
     }
 }

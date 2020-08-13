@@ -11,7 +11,15 @@ export default function App() {
   return (
     // <div  style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
        <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="Home" screenOptions={{
+        headerStyle: {
+          backgroundColor: '#000000',
+        },headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+
+        }}>
             <Stack.Screen name="Show" component={Show} />
             <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
