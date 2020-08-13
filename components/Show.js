@@ -10,13 +10,16 @@ class Show extends React.Component{
         this.state ={
         }
     }
+    componentDidMount = ()=>{
+        // console.log(this.props)
+    }
 
     render(){
         const Tab = createMaterialTopTabNavigator();
         return(
             <Tab.Navigator>
-                <Tab.Screen initialParams={this.props.openData} name="Open" component={Open} />
-                <Tab.Screen initialParams={this.props.closedData} name="Closed" component={Closed} />
+                <Tab.Screen initialParams={this.props.route.params.openData} name="Open" component={Open} />
+                <Tab.Screen initialParams={this.props.route.params.closedData} name="Closed" component={Closed} />
             </Tab.Navigator>
         )
     }

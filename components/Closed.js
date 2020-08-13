@@ -5,12 +5,14 @@ class Closed extends React.Component{
     constructor(){
         super()
         this.state ={
-            org_name:"",
-            repo_name:"",
+            data:[]
         }
     }
 
-
+    componentDidMount(){
+        // console.log(this.props)
+        this.setState({data: this.props.route.params.openData})
+    }
 
     render(){
         return(
