@@ -1,6 +1,8 @@
 import React from 'react';
-import { TextInput, Button } from 'react-native';
+import { TextInput, Button, ScrollView } from 'react-native';
 import axios from "axios"
+import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
+
 class Open extends React.Component{
     constructor(){
         super()
@@ -10,21 +12,37 @@ class Open extends React.Component{
     }
 
     componentDidMount(){
-        // console.log(this.props)
-        this.setState({data: this.props.route.params.openData})
-    }
+        // this.setState({data: this.props.route.params.openData})
+        const data = this.props.route.params
+        console.log(data)
+        const comp = Object.keys(data).map(item =>{
+            const title = data[item].title
+            const titleText = `Title: ${title}`
+            const number = data[item].number
+            const numberText = `PR Number: ${number}`
+            const status = data[item].state
+            const statusText = `Pull Status: ${status}`
+            const created = data[item].created_at
+            const createdText = `Created: ${created}`
+            return(
+                <Card>
+                    <CardContent text={"Title: " + title} />
+                    <CardContent text={"Pull Number: " + number} />
+                    <CardContent text={"Pull Status: " + status} />
+                    <CardContent text={"Created: " + created} />
+                </Card>
+            )
+        })
+        this.setState({comp})
+    }   
 
     render(){
         return(
-            <div  style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <TextInput onChange={this.handleChange} placeholder="ORG NAME" name="org_name" value={this.state.org_name} style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} /><br/>
-                <TextInput onChange={this.handleChange} placeholder="REPO NAME" name="repo_name" value={this.state.repo} style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} /><br/>
-                <Button 
-                    onPress={this.handlePress}
-                    title = "Open"
-                    color = "red"
-                />
-            </div>
+            <ScrollView>
+                {
+                    this.state.comp?this.state.comp:[]  
+                }
+            </ScrollView>
         )
     }
 }
